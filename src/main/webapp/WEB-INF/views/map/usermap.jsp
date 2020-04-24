@@ -53,7 +53,7 @@
 		marker.setMap(map);
 		
 		<c:forEach items="${list}" var="list">
-   			searchAddress("${list.name}","${list.address}");
+   			searchAddress("${list.sname}","${list.address}");
   		</c:forEach>
 
    	function searchAddress(name, address){
