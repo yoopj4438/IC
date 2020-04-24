@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ds.mapper.ProdMapper">
+
+	<insert id="insert">
+        insert into test_product(pnum, pname, price, quantity, snum) 
+        values(#{pnum}, #{pname}, #{price}, #{quantity},#{snum})
+	</insert>
+	
+	<select id="getList" resultType="com.ds.domain.ProdVO">
+		select * from test_product ORDER by pnum asc
+	</select>
+	
+	<delete id="delete">
+		delete from test_product where pnum=#{pnum}
+	</delete>
+	
+	<update id="modify">
+		update test_product set
+		pname=#{pname},
+		price=#{price}, 
+		quantity=#{quantity}
+		where
+		pnum=#{pnum}
+	</update>
+</mapper>
