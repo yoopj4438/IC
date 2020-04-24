@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class StoreVO {
-	private String name, address;
+	private int snum, phone;
+	private String sname, sid, password, address, cate;
 }
