@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 public class StoreServiceImpl implements StoreService {
+	
 	@Autowired
 	private StoreMapper storeMapper;
 	@Override
@@ -28,6 +29,11 @@ public List<Map<String, String>> cateList(){
 	public int Regist(StoreVO storeVO) {
 		log.info("storeRegist");
 		return storeMapper.Regist(storeVO);
+	}
+	@Override
+	public List<StoreVO> getList(StoreVO store) {
+		log.info("getList");
+		return storeMapper.getList(store);
 	}
 	
 }
