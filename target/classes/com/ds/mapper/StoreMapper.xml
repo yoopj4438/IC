@@ -7,7 +7,13 @@
 	<select id="read" resultType="com.ds.domain.StoreVO">
 		select * from test_tbl
 	</select>
-
+	<select id="cateList" resultType="java.util.Map">
+		select * from tb_cate
+	</select>
+	
+	<insert id="Regist">
+	insert into tb_store values(sq_store.nextval,#{sname},#{sid},#{password},#{phone},#{address},#{cate})
+	</insert>
 
 
 </mapper>
