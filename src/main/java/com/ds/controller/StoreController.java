@@ -17,21 +17,22 @@ import com.ds.service.StoreService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/Store/*")
+@RequestMapping("/store/*")
 @Log4j
 public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	@GetMapping("/Regist")
+	@GetMapping("/regist")
 	public void StoreRegist(Model model) {
 		List<Map<String, String>> cateList = storeService.cateList();
 	model.addAttribute("cateList", cateList);
+	log.info("regist");
 	}
-	@PostMapping("/RegistSubmit")
+	@PostMapping("/registSubmit")
 	public String RegistSubmit(StoreVO svo,RedirectAttributes rttr) throws Exception {
 		int result = storeService.Regist(svo);
 		rttr.addFlashAttribute("result",result);
-		return "redirect:/Store/Regist";
+		return "redirect:/store/regist";
 	}
 }
