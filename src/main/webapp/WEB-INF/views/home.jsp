@@ -31,10 +31,29 @@
       </div>
       
 <script>
-   
    navigator.geolocation.getCurrentPosition(function(pos) {
+   function getList(latitude,longitude,length){
+	   console.log("getList");
+	   $.ajax({
+			type : 'GET',
+			url : '/getList',
+			data:"latitude="+latitude+"&longitude="+longitude+"&length="+length,
+			contentType : "application/json; charset=utf-8",
+			success : function(data) {
+				 $.each(data, function(idx, entry) { 
+					
+					var markerPosition = new kakao.maps.LatLng(entry.latitude*1, entry.longitude*1);
+					var marker = new kakao.maps.Marker({
+	        			position: markerPosition
+				   });
+					marker.setMap(map);
+        		});
+			}
+		});
+   }
 	    var latitude = pos.coords.latitude;
 	    var longitude = pos.coords.longitude;
+	    getList(latitude,longitude,0.3);
 	   
 	
 		var container = document.getElementById('map');
@@ -58,9 +77,7 @@
 		});
 		marker.setMap(map);
 		
-		<c:forEach items="${list}" var="list">
-   			searchAddress("${list.sname}","${list.address}");
-  		</c:forEach>
+		
 
    	function searchAddress(name, address){
 	    //ajax 시작

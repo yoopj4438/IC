@@ -14,6 +14,12 @@
 	<insert id="Regist">
 	insert into tb_store values(sq_store.nextval,#{sname},#{sid},#{password},#{phone},#{address},#{cate})
 	</insert>
+	<select id="getList" resultType="com.ds.domain.StoreVO">
+		<![CDATA[
+			select sid,sname,latitude, longitude 
+			from map_tbl where calc_distance(#{latitude},#{longitude},latitude,longitude)<#{length}
+		 ]]>
+	</select>
 
 
 </mapper>
