@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 	
 	@Override
-    public StoreVO login(String id) {
+    public StoreVO login(String snum) {
 		log.info("impl login");
-        return userMapper.login(id);
+        return userMapper.login(snum);
     }
 }

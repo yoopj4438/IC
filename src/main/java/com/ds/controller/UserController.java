@@ -16,25 +16,24 @@ import lombok.extern.log4j.Log4j;
 public class UserController {
 	@Autowired
 	private UserService service;
-	
+
 	@PostMapping("/login")
-	public String login(@Param("sid") String sid,@Param("password") String password,Model model) {
-	
-		
-		StoreVO store = service.login(sid);
-		log.info("login"+sid+""+password);
+	public String login(@Param("snum") String snum, @Param("password") String password, Model model) {
+
+		StoreVO store = service.login(snum);
+		log.info("login" + snum + "" + password);
 		log.info(store);
-		if(store == null) {
-			model.addAttribute("result", "아이디와 패스워드를 확인해주세요.");
+		if (store == null) {
+			model.addAttribute("id", "false");
 			return "redirect:/";
-		}else if(store.getPassword().equals(password)){
+		} else if (store.getPassword().equals(password)) {
+			model.addAttribute("result", "로그인성공");
 			model.addAttribute("store", store);
 			return "redirect:/prod/list";
-		}else {
+		} else {
 			model.addAttribute("result", "패스워드를 확인해주세요.");
 			return "redirect:/";
 		}
-		
-		
+
 	}
 }

@@ -73,13 +73,14 @@
                                     <form action="/login" method="post" id="frm">
                                         <li>
                                             <label>매장 아이디</label> <input type="text" class="form-control"
-                                                placeholder="Company" id="sid" name="sid"
+                                                placeholder="Company" id="snum" name="snum"
                                                 onKeyUp="javascript:fnChkByte(this,'30')" />
                                         </li>
                                         <li><label>매장 비밀번호</label> <input type="password" class="form-control"
                                                 placeholder="password" id="password" name="password"
                                                 onKeyUp="javascript:fnChkByte(this,'30')" />
                                         </li>
+                                        <input type="hidden" id="<c:out value="${id}"/>">
                                         <div style="height: 50px; text-align: center; padding-top: 10px;">
                                             <button class="btnlogin" type="button" onclick="login();">로그인</button>
                                             <button class="btnlogin" type="button"
@@ -109,9 +110,9 @@
             </div>
             <script>
                 function login() {
-                    if ($("#sid").val() == "") {
+                    if ($("#snum").val() == "") {
                         alert("아이디를 입력하세요.");
-                        $("#sid").focus();
+                        $("#snum").focus();
                         return;
                     }
                     if ($("#password").val() == "") {
@@ -119,6 +120,7 @@
                         $("#password").focus();
                         return;
                     }
+                    
                     $("#frm").submit();
                 }
             </script>

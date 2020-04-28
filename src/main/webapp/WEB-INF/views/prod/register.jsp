@@ -133,8 +133,8 @@
               <div class="card-footer">
                 
                 <button type="button" id="modal_opne_btn" class="btn btn-fill btn-info">전송</button>
-                <button type="button" onclick="location.href='/prod/list' "
-                  class="btn btn-fill btn-info">목록보기</button>
+                <!-- <button type="button" onclick="location.href='/prod/list' "
+                  class="btn btn-fill btn-info">목록보기</button> -->
               </div>
 
               <!-- modal start-->

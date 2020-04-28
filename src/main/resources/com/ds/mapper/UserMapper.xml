@@ -7,7 +7,7 @@
 
 	<!-- login에 대한 DB 작업을 정의한다. id와 pw가 일치하면 사용자 정보를 담고 있는 객체를 반환한다. -->
 	<select id="login" resultType="com.ds.domain.StoreVO">
-		select * from tb_store where sid = #{sid} 
+		select * from tb_store where snum = to_number(#{snum}) 
 	</select>
 
 </mapper>
