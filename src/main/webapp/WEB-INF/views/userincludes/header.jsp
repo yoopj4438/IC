@@ -27,6 +27,13 @@
 <link href="/resources/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="/resources/demo/demo.css" rel="stylesheet" />
+<style>
+.btnlogin {
+	background-color: rgba(0,0,0,0);
+	border-radius: 5px;
+	border: 1px solid #8f9194;
+}
+</style>
 </head>
 
 <body class="white-content">
@@ -69,13 +76,7 @@
 
 							</a>
 							<ul class="dropdown-menu dropdown-navbar">
-								<form action="/Store/RegistSubmit" method="post" id="frm">
-									<li>
-										<label>매장이름 </label> 
-										<input type="text" class="form-control" placeholder="Username" id="sname"
-										name="sname" onKeyUp="javascript:fnChkByte(this,'50')" />
-
-									</li>
+								<form action="/login" method="post" id="frm">
 									<li>
 										<label>매장 아이디</label> <input type="text"
 										class="form-control" placeholder="Company" id="sid" name="sid"
@@ -84,8 +85,11 @@
 									<li><label>매장 비밀번호</label> <input type="password"
 										class="form-control" placeholder="password" id="password"
 										name="password" onKeyUp="javascript:fnChkByte(this,'30')"/>
-
 									</li>
+									<div style="height: 50px; text-align: center; padding-top: 10px;">
+									<button class="btnlogin" type="submit">로그인</button>
+									<button class="btnlogin" type="button" onclick="location.href='/store/regist' ">회원가입</button>
+									</div>
 							</form>
 						</ul>
 				</li>
