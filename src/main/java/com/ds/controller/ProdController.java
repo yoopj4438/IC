@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,8 +43,8 @@ public class ProdController {
 	}
 
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list", service.getList());
+	public void list(@Param("snum")int snum, Model model) {
+		model.addAttribute("list", service.getList(snum));
 	}
 	
 	@PostMapping("/modify")

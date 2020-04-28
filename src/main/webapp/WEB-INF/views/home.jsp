@@ -17,6 +17,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card card-plain">
+            <div>
+                            <input type="text" class="form-control" id="search" placeholder="SEARCH">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tim-icons icon-zoom-split" id="searchBtn"></i>
+                            </button>
+                        </div>
               <div class="card-header">
                 Google Maps
               </div>
@@ -37,11 +43,11 @@
 	   $.ajax({
 			type : 'GET',
 			url : '/getList',
-			data:"latitude="+latitude+"&longitude="+longitude+"&length="+length,
+			data:"latitude="+latitude+"&longitude="+longitude+"&length="+length+"&pname="+$('#search').val(),
 			contentType : "application/json; charset=utf-8",
 			success : function(data) {
+					 var map = new kakao.maps.Map(container, options);
 				 $.each(data, function(idx, entry) { 
-					
 					var markerPosition = new kakao.maps.LatLng(entry.latitude*1, entry.longitude*1);
 					var marker = new kakao.maps.Marker({
 	        			position: markerPosition
@@ -53,7 +59,9 @@
    }
 	    var latitude = pos.coords.latitude;
 	    var longitude = pos.coords.longitude;
-	    getList(latitude,longitude,0.3);
+	    $('#searchBtn').on('click',function(e){
+	    	getList(latitude, longitude, 0.5);
+	    })
 	   
 	
 		var container = document.getElementById('map');
@@ -61,7 +69,7 @@
 			center: new kakao.maps.LatLng(latitude, longitude),
 			level: 4
 		};
-
+	
 		var map = new kakao.maps.Map(container, options);
 		
 		var zoomControl = new kakao.maps.ZoomControl();

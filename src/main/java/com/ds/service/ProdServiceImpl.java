@@ -30,8 +30,8 @@ public class ProdServiceImpl implements ProdService {
 	}
 
 	@Override
-	public List<ProdVO> getList() {
-		return mapper.getList();
+	public List<ProdVO> getList(int snum) {
+		return mapper.getList(snum);
 	}
 	
 	@Override

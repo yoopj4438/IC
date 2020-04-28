@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="getList" resultType="com.ds.domain.ProdVO">
-		select * from tb_product ORDER by pnum asc
+		select * from tb_product where snum=#{snum} ORDER by pnum asc
 	</select>
 	
 	<delete id="delete">
@@ -18,7 +18,7 @@
 	</delete>
 	<insert id="insertDB" parameterType="java.util.Map">
         INSERT INTO map_tbl
-        VALUES(#{SID}, #{SNAME}, #{ADDRESS},#{LATITUDE},#{LONGITUDE})
+        VALUES(#{Snum}, #{SNAME}, #{ADDRESS},#{LATITUDE},#{LONGITUDE})
     </insert>
 	
 	<update id="modify">

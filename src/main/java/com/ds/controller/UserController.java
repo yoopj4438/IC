@@ -29,6 +29,7 @@ public class UserController {
 		} else if (store.getPassword().equals(password)) {
 			model.addAttribute("result", "로그인성공");
 			model.addAttribute("store", store);
+			model.addAttribute("snum", snum);
 			return "redirect:/prod/list";
 		} else {
 			model.addAttribute("result", "패스워드를 확인해주세요.");

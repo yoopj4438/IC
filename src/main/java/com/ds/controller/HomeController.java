@@ -47,12 +47,13 @@ public class HomeController {
 			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	@ResponseBody
 	public ResponseEntity<List<StoreVO>> getList(@Param("latitude") String latitude,
-			@Param("longitude") String longitude,@Param("length") String length){
+			@Param("longitude") String longitude,@Param("length") String length,@Param("pname") String pname){
 		StoreVO store = new StoreVO();
 		store.setLatitude(latitude);
 		store.setLongitude(longitude);
 		store.setLength(length);
-		log.info("1111111111111111111111111111111111"+latitude);
+		store.setPname(pname);
+		log.info(""+latitude+" "+longitude);
 		return new ResponseEntity(service.getList(store),HttpStatus.OK);
 	}
 	
