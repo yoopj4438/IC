@@ -75,6 +75,23 @@
     $("#modal_close_btn1").click(function () {
       $("#modal1").fadeOut();
     });
+    $("#excelFile").change(function(e) {
+		var form = $("#excelUpForm")[0];
+		 
+        var data = new FormData(form);
+        $.ajax({
+           enctype:"multipart/form-data",
+           method:"POST",
+           url: '/excel/excelUp.do',
+           processData: false,   
+           contentType: false,
+           cache: false,
+           data: data,
+           success: function(result){  
+               alert("업로드 성공!!");
+           }
+        });
+
   });
 </script>
 
@@ -133,6 +150,10 @@
               <div class="card-footer">
                 
                 <button type="button" id="modal_opne_btn" class="btn btn-fill btn-info">전송</button>
+                <form name="excelUpForm" id="excelUpForm" enctype="multipart/form-data"
+				method="POST" >
+					<input type="file" id="excelFile" name="excleFile" value="엑셀 업로드">
+				</form>
                 <!-- <button type="button" onclick="location.href='/prod/list' "
                   class="btn btn-fill btn-info">목록보기</button> -->
               </div>
