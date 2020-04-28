@@ -5,7 +5,7 @@
 <mapper namespace="com.ds.mapper.ProdMapper">
 
 	<insert id="insert">
-        insert into tb_product(pnum, pname, price, quantity, snum) 
+        insert into tb_product
         values(#{pnum}, #{pname}, #{price}, #{quantity},#{snum})
 	</insert>
 	
@@ -16,6 +16,10 @@
 	<delete id="delete">
 		delete from tb_product where pnum=#{pnum}
 	</delete>
+	<insert id="insertDB" parameterType="java.util.Map">
+        INSERT INTO map_tbl
+        VALUES(#{SID}, #{SNAME}, #{ADDRESS},#{LATITUDE},#{LONGITUDE})
+    </insert>
 	
 	<update id="modify">
 		update tb_product set

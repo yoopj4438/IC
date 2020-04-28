@@ -31,6 +31,7 @@ public class StoreController {
 	}
 	@PostMapping("/registSubmit")
 	public String RegistSubmit(StoreVO svo,RedirectAttributes rttr) throws Exception {
+		log.info("regist");
 		int result = storeService.Regist(svo);
 		rttr.addFlashAttribute("result",result);
 		return "redirect:/store/regist";

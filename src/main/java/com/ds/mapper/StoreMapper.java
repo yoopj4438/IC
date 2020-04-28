@@ -12,4 +12,5 @@ public interface StoreMapper {
 	public List<Map<String,String>> cateList();
 	public int Regist(StoreVO storeVO);
 	public List<StoreVO> getList(StoreVO store);
+	
 }

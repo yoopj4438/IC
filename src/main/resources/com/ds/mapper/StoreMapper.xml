@@ -12,7 +12,7 @@
 	</select>
 	
 	<insert id="Regist">
-	insert into tb_store values(sq_store.nextval,#{sname},#{sid},#{password},#{phone},#{address},#{cate})
+	insert into tb_store values(#{snum},#{sname},#{password},#{address},#{longitude},#{latitude},#{phone})
 	</insert>
 	<select id="getList" resultType="com.ds.domain.StoreVO">
 		<![CDATA[

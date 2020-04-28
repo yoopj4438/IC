@@ -16,7 +16,7 @@
 					<h5 class="title">회원가입</h5>
 				</div>
 				<div class="card-body">
-					<form action="/Store/RegistSubmit" method="post" name="frm"	id="frm">
+					<form action="/store/registSubmit" method="post" name="frm"	id="frm">
 						<div class="row">
 							<div class="col-md-5 pr-md-1">
 								<div class="form-group">
@@ -24,8 +24,8 @@
 									<input  type="text" 
 											class="form-control"
 											placeholder="Username"
-											id="sid"
-											name="sid"
+											id="snum"
+											name="snum" value="19911025"
 											onKeyUp="javascript:fnChkByte(this,'50')">
 								</div>
 							</div>
@@ -73,6 +73,18 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-5 pr-md-1">
+								<div class="form-group">
+									<label>전화번호</label>
+									 <input type="text"
+									 	    class="form-control"
+									 	    placeholder="phone"
+									 	    id="phone" 
+									 	    name="phone">
+								</div>
+							</div>
+						</div>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="form-group">
@@ -85,6 +97,9 @@
 						</div>
 					</div>
 				</div>
+				<input type="hidden" id="longitude" name="longitude" />
+				<input type="hidden" id="latitude" name="latitude" />
+				
 				</form>
 				</div>
 			</div>
@@ -118,21 +133,15 @@
 					rlen = i + 1; //return할 문자열 갯수
 				}
 			}
-
+			var length = (Math.floor(maxByte/3));
 			if (rbyte > maxByte) {
 				// alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
-				alert("한글" +(Math.floor(maxByte/3))+ " 자 / 영문 " +maxByte+ "자를 초과 입력할 수 없습니다.");
+				alert("한글" + length + " 자 / 영문 " +maxByte+ "자를 초과 입력할 수 없습니다.");
 				str2 = str.substr(0, rlen); //문자열 자르기
 				obj.value = str2;
 				fnChkByte(obj, maxByte);
 			} 
 		}
-		
-	
-	</script>
-
-
-<script>
 		function save() {
 			/* if ($("#sname").val() == "") {
 				alert("빈칸을 넣어주세요");
@@ -141,7 +150,7 @@
 			}
 			 */
 
-			if ($("#sid").val() == "") {
+			if ($("#snum").val() == "") {
 				alert("빈칸을 넣어주세요");
 				$("#sname").focus();
 				return;
@@ -173,33 +182,51 @@
 				}
 				
 			}
-			/*  $("#search").on("click",function(e){
+			 $("#search").on("click",function(e){
 				e.preventDefault();
-				var xhr = new XMLHttpRequest();
-				var url = 'http://data.sbiz.or.kr/api/open/sdsc/storeOne'; /*URL*//* 
-				var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'서비스키'; /*Service Key*/
-				/* queryParams += '&' + encodeURIComponent('key') + '=' + encodeURIComponent('19911025'); 
-							$.ajax({
+				var storeNum = $("#snum").val();
+				 
+				$.ajax({
 					url: 'http://data.sbiz.or.kr/api/open/sdsc/storeOne',
-					data :  "ServiceKey"+ encodeURIComponent('ServiceKey'),
+					data : "ServiceKey=Ft+j2ZR5d37+DfQMya7x0O9uu92JRY3ZhbCUeL02TgwsefhuQ9bts0Ef8waZd2xIgEY2OjjvQoAZM+8EzN9GPQ==&key="+storeNum ,
 					type : 'GET',
-					dataType : 'JSON',
-					success :  function (data){ 
-					    if (this.readyState == 4) {
-					        alert('Status: '+this.status+'nHeaders:'+JSON.stringify(this.getAllResponseHeaders())+'nBody:'+this.responseText);
-					    }
-				xhr.send('');
-				}
+					dataType : 'XML',
+					success:  function(xml){
+						$(xml).find('item').each(function(){  
+				        var sname = $(this).find("bizesNm").text();
+				        var address = $(this).find("rdnmAdr").text(); 
+				        var longitude = $(this).find("lon").text(); 
+				        var latitude = $(this).find("lat").text(); 
+				        
+				        $("#sname").val(sname);
+				        $("#address").val(address);
+				        $("#latitude").val(latitude);
+				        $("#longitude").val(longitude);
+				 
+				    });
+					},				
+				    error: function (request, textStatus, errorThrown) {
+				        alert('Error');
+				        console.log(request.status);
+				        console.log(request.statusText);
+				        console.log(request.readyState);
+				        console.log(textStatus);
+				        console.log(errorThrown);
+				    }
 				});
 			
 				console.log("click");
-				if($("#sname").val()==""){
+				if($("#snum").val()==""){
 					alert("빈칸을 넣어주세요");
-					$("#sname").focus();
+					$("#snum").focus();
 					return;
-				}  */ 
-			/* }); */  
+				}  
+			 });  
 		});
+		
+		function callback(data) {
+			alert(data);
+		}
 
 	</script>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

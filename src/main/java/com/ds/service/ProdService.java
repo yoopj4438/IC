@@ -9,4 +9,5 @@ public interface ProdService {
 	public List<ProdVO> getList(); // 조회
 	public void modify(ProdVO prod);
 	public void delete(ProdVO prod);
+	public List<?> getExcelUpload(String excelFile);
 }
